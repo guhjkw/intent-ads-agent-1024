@@ -1,0 +1,396 @@
+{
+  "settings": {
+    "today": "2026-10-24"
+  },
+  "industries": [
+    {
+      "id": "dental",
+      "name": "Dental clinics",
+      "fit": 1.0,
+      "customers": "new patients",
+      "noun": "dental clinic"
+    },
+    {
+      "id": "home",
+      "name": "Home services",
+      "fit": 1.0,
+      "customers": "booked jobs",
+      "noun": "home service company"
+    },
+    {
+      "id": "medspa",
+      "name": "Med spas",
+      "fit": 1.0,
+      "customers": "bookings",
+      "noun": "med spa"
+    },
+    {
+      "id": "fitness",
+      "name": "Fitness studios",
+      "fit": 0.9,
+      "customers": "members",
+      "noun": "fitness studio"
+    },
+    {
+      "id": "realty",
+      "name": "Real estate teams",
+      "fit": 0.8,
+      "customers": "listings",
+      "noun": "real estate team"
+    }
+  ],
+  "accounts": [
+    {
+      "company": "Lakeshore Family Dental",
+      "city": "Mississauga",
+      "industry": "dental",
+      "signals": [
+        {
+          "type": "hiring-marketing",
+          "date": "2026-10-20",
+          "note": "Social media coordinator role posted"
+        },
+        {
+          "type": "new-location",
+          "date": "2026-10-01",
+          "note": "Second clinic opening in Oakville"
+        },
+        {
+          "type": "site-visit",
+          "date": "2026-10-22",
+          "note": "Pricing page, 3 visits"
+        },
+        {
+          "type": "ads-started",
+          "date": "2026-10-15"
+        }
+      ],
+      "contact": {
+        "name": "Anika Rao",
+        "title": "Practice owner",
+        "email": "anika@lakeshorefamilydental.example",
+        "emailStatus": "valid"
+      }
+    },
+    {
+      "company": "Bloor West Smiles",
+      "city": "Toronto",
+      "industry": "dental",
+      "signals": [
+        {
+          "type": "leadership-change",
+          "date": "2026-10-12",
+          "note": "New practice manager"
+        },
+        {
+          "type": "review-drop",
+          "date": "2026-10-05",
+          "note": "4.6 to 4.2 stars"
+        },
+        {
+          "type": "site-visit",
+          "date": "2026-10-20"
+        }
+      ],
+      "contact": {
+        "name": "Marco Silva",
+        "title": "Practice manager",
+        "email": "marco@bloorwestsmiles.example",
+        "emailStatus": "catch-all"
+      }
+    },
+    {
+      "company": "Northline Roofing",
+      "city": "Hamilton",
+      "industry": "home",
+      "signals": [
+        {
+          "type": "funding",
+          "date": "2026-10-14",
+          "note": "Equipment financing announced"
+        },
+        {
+          "type": "hiring-marketing",
+          "date": "2026-10-18",
+          "note": "Marketing coordinator role"
+        },
+        {
+          "type": "ads-stopped",
+          "date": "2026-10-02"
+        },
+        {
+          "type": "site-visit",
+          "date": "2026-10-23"
+        }
+      ],
+      "contact": {
+        "name": "Dave Kowalski",
+        "title": "Owner",
+        "email": "dave@northlineroofing.example",
+        "emailStatus": "valid"
+      }
+    },
+    {
+      "company": "Capital Comfort HVAC",
+      "city": "Ottawa",
+      "industry": "home",
+      "signals": [
+        {
+          "type": "new-location",
+          "date": "2026-09-28",
+          "note": "Kanata branch"
+        },
+        {
+          "type": "ads-started",
+          "date": "2026-10-10"
+        },
+        {
+          "type": "hiring-marketing",
+          "date": "2026-10-15",
+          "note": "Digital marketing coordinator"
+        }
+      ],
+      "contact": {
+        "name": "Julie Tremblay",
+        "title": "Marketing lead",
+        "email": "",
+        "emailStatus": "none"
+      }
+    },
+    {
+      "company": "Glow Aesthetics Studio",
+      "city": "Toronto",
+      "industry": "medspa",
+      "signals": [
+        {
+          "type": "product-launch",
+          "date": "2026-10-16",
+          "note": "New laser treatment"
+        },
+        {
+          "type": "hiring-marketing",
+          "date": "2026-10-19",
+          "note": "Content creator role"
+        },
+        {
+          "type": "site-visit",
+          "date": "2026-10-21"
+        }
+      ],
+      "contact": {
+        "name": "Sara Ahmed",
+        "title": "Founder",
+        "email": "sara@glowaesthetics.example",
+        "emailStatus": "valid"
+      }
+    },
+    {
+      "company": "Forest City Med Spa",
+      "city": "London",
+      "industry": "medspa",
+      "signals": [
+        {
+          "type": "review-drop",
+          "date": "2026-09-10"
+        }
+      ],
+      "contact": {
+        "name": "Emily Chen",
+        "title": "Clinic director",
+        "email": "emily@forestcitymedspa.example",
+        "emailStatus": "valid"
+      }
+    },
+    {
+      "company": "Iron Harbour Fitness",
+      "city": "Hamilton",
+      "industry": "fitness",
+      "signals": [
+        {
+          "type": "new-location",
+          "date": "2026-10-08",
+          "note": "Second gym, Stoney Creek"
+        },
+        {
+          "type": "ads-started",
+          "date": "2026-10-17"
+        },
+        {
+          "type": "leadership-change",
+          "date": "2026-10-19"
+        },
+        {
+          "type": "hiring-marketing",
+          "date": "2026-10-06",
+          "note": "Front desk and social media role"
+        }
+      ],
+      "contact": {
+        "name": "Ryan Murphy",
+        "title": "Co-owner",
+        "email": "ryan@ironharbourfitness.example",
+        "emailStatus": "valid"
+      }
+    },
+    {
+      "company": "Pulse Cycle Studio",
+      "city": "Ottawa",
+      "industry": "fitness",
+      "signals": [
+        {
+          "type": "ads-stopped",
+          "date": "2026-08-01"
+        }
+      ],
+      "contact": {
+        "name": "Nina Patel",
+        "title": "Owner",
+        "email": "nina@pulsecycle.example",
+        "emailStatus": "invalid"
+      }
+    },
+    {
+      "company": "Harbourfront Realty Group",
+      "city": "Toronto",
+      "industry": "realty",
+      "signals": [
+        {
+          "type": "hiring-marketing",
+          "date": "2026-10-21",
+          "note": "Video editor role"
+        },
+        {
+          "type": "funding",
+          "date": "2026-10-09"
+        },
+        {
+          "type": "site-visit",
+          "date": "2026-10-23"
+        }
+      ],
+      "contact": {
+        "name": "Omar Haddad",
+        "title": "Team lead",
+        "email": "omar@harbourfrontrealty.example",
+        "emailStatus": "valid"
+      }
+    },
+    {
+      "company": "Maple Key Homes",
+      "city": "Mississauga",
+      "industry": "realty",
+      "signals": [
+        {
+          "type": "ads-started",
+          "date": "2026-10-11"
+        }
+      ],
+      "contact": {
+        "name": "Linda Park",
+        "title": "Broker",
+        "email": "linda@maplekeyhomes.example",
+        "emailStatus": "valid"
+      }
+    },
+    {
+      "company": "Riverside Auto Repair",
+      "city": "London",
+      "industry": "auto",
+      "signals": [
+        {
+          "type": "hiring-marketing",
+          "date": "2026-10-20"
+        }
+      ],
+      "contact": {
+        "name": "Tom Reid",
+        "title": "Owner",
+        "email": "tom@riversideauto.example",
+        "emailStatus": "valid"
+      }
+    },
+    {
+      "industry": "dental",
+      "signals": []
+    }
+  ],
+  "copy": {
+    "social media management": {
+      "hook": "Posting every day, without hiring",
+      "body": "We run social media for {industry} in {city}: content, posting and replies, so your team stays with {customers}.",
+      "scene": "A week of posts for a {business} in {city}, made from photos they already have."
+    },
+    "short video ads": {
+      "hook": "15-second videos that bring in {customers}",
+      "body": "Short local video ads for {industry}, tested every week and paused when they stop working.",
+      "scene": "Turn reviews and photos from a {business} in {city} into a 15-second ad."
+    },
+    "paid social campaigns": {
+      "hook": "Ads that pay for themselves, or get paused",
+      "body": "Meta campaigns for {industry} with a cost-per-lead target and a weekly report you can read in a minute.",
+      "scene": "The weekly report: what ran, what each lead cost, what was paused."
+    },
+    "local awareness ads": {
+      "hook": "Just opened? Let {city} know",
+      "body": "Launch ads for a new {business} location, shown to people a few kilometres away.",
+      "scene": "A map of {city} with the new location and the people reached around it."
+    },
+    "launch campaign": {
+      "hook": "Launching something new? Fill the first month",
+      "body": "A two-week launch campaign for {industry}: static ads, short videos and a booking link.",
+      "scene": "Before and after: the new service, then the booking calendar filling up."
+    },
+    "agency review": {
+      "hook": "New in the role? Here is what your ads are costing",
+      "body": "A free 15-minute review of your current ads, for anyone who just took over marketing at a {business}.",
+      "scene": "Three numbers every new marketing lead in {city} should check this week."
+    },
+    "default": {
+      "hook": "More {customers} this month",
+      "body": "We help {industry} in {city} turn social media into {customers}.",
+      "scene": "A {business} in {city}, before and after a month of ads."
+    }
+  },
+  "adResults": [
+    {
+      "id": "AD-dental-short-video-ads",
+      "spend": 140,
+      "impressions": 18000,
+      "clicks": 230,
+      "leads": 5,
+      "daily": 30
+    },
+    {
+      "id": "AD-home-paid-social-campaigns",
+      "spend": 95,
+      "impressions": 15000,
+      "clicks": 90,
+      "leads": 0,
+      "daily": 25
+    },
+    {
+      "id": "AD-medspa-launch-campaign",
+      "spend": 45,
+      "impressions": 6000,
+      "clicks": 70,
+      "leads": 1,
+      "daily": 20
+    },
+    {
+      "id": "AD-fitness-local-awareness-ads",
+      "spend": 120,
+      "impressions": 12000,
+      "clicks": 70,
+      "leads": 2,
+      "daily": 20
+    },
+    {
+      "id": "AD-realty-short-video-ads",
+      "spend": 200,
+      "impressions": 21000,
+      "clicks": 260,
+      "leads": 3,
+      "daily": 35
+    }
+  ]
+}

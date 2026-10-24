@@ -1,0 +1,245 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Buying Signal Agents</title>
+<meta name="description" content="A live preview of two agents: one scores companies in five industries by buying signals and builds a verified follow-up list, the other turns the hottest groups into ad briefs and manages spend by cost per lead.">
+<style>
+
+  :root { --bg:#0f1214; --surface:#161b1e; --surface-2:#1c2226; --border:#283036; --text:#e8edf0; --muted:#98a6ad; --gold:#e3b341; --good:#4ade80;
+          --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif; --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; }
+  * { box-sizing:border-box; } [hidden] { display:none !important; }
+  html { -webkit-text-size-adjust:100%; }
+  body { margin:0; background:var(--bg); color:var(--text); font:16px/1.55 var(--sans); }
+  .wrap { max-width:1320px; margin:0 auto; padding:0 16px; }
+  .topbar { border-bottom:1px solid var(--border); } .topbar .wrap { display:flex; justify-content:space-between; align-items:center; gap:12px; padding-top:12px; padding-bottom:12px; }
+  .eyebrow { font-size:13px; letter-spacing:.06em; text-transform:uppercase; color:var(--muted); }
+  .pill { font-size:12px; border:1px solid var(--border); border-radius:999px; padding:3px 10px; color:var(--muted); white-space:nowrap; }
+  .hero { padding:34px 0 18px; } h1 { font-size:clamp(28px,4vw,42px); line-height:1.12; margin:6px 0 12px; letter-spacing:-.01em; max-width:30ch; }
+  .lede { color:var(--muted); font-size:18px; max-width:84ch; margin:0; } .lede strong { color:var(--text); }
+  section { padding:26px 0; } h2 { font-size:23px; margin:0 0 6px; } .sub { color:var(--muted); margin:0 0 18px; }
+  .benefits { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:14px; margin-top:22px; }
+  .benefits div { background:var(--surface); border:1px solid var(--border); border-radius:14px; padding:14px 16px; font-size:15px; color:var(--muted); } .benefits b { color:var(--text); display:block; font-size:16px; margin-bottom:2px; }
+
+  
+  /* ---------- app: Clay-style table + ads ---------- */
+  .app { border-radius:12px; overflow:hidden; border:1px solid #3a444a; box-shadow:0 20px 60px rgba(0,0,0,.45); background:#fbfaf7; color:#1d1c1a; font:13px/1.5 var(--sans); }
+  .abar { display:flex; gap:8px; align-items:center; flex-wrap:wrap; padding:9px 14px; background:#fff; border-bottom:1px solid #e7e4dc; } .abar b { font-size:14px; } .abar .sp { flex:1; } .abar small { color:#6c6a64; }
+  .chip { font:600 12px var(--sans); background:#f1efe9; color:#3b3934; border:1px solid #e2dfd6; border-radius:999px; padding:3px 10px; cursor:pointer; } .chip[aria-pressed=true] { background:#2b2a26; color:#fff; border-color:#2b2a26; }
+  .abar select, .abar input, .frm select, .frm input { font:12.5px var(--sans); border:1px solid #d9d5ca; border-radius:6px; padding:4px 6px; background:#fff; color:#1d1c1a; }
+  .tblwrap { overflow:auto; max-height:430px; border-bottom:1px solid #e7e4dc; }
+  table.clay { border-collapse:separate; border-spacing:0; width:100%; min-width:980px; font-size:12.5px; }
+  table.clay th { position:sticky; top:0; background:#f6f4ef; text-align:left; font-weight:600; color:#57544c; padding:7px 9px; border-bottom:1px solid #e7e4dc; border-right:1px solid #eeebe4; white-space:nowrap; z-index:1; }
+  table.clay th small { display:block; font-weight:500; color:#8d8a82; font-size:10.5px; }
+  table.clay td { padding:6px 9px; border-bottom:1px solid #f0ede6; border-right:1px solid #f3f1eb; vertical-align:top; background:#fff; }
+  table.clay tr { cursor:pointer; } table.clay tr[aria-selected=true] td { background:#fff8e6; } table.clay td.n { color:#a29f97; font:11px var(--mono); width:26px; }
+  .tg { font:700 11px var(--sans); border-radius:999px; padding:1px 8px; white-space:nowrap; } .tg.hot { background:#fde4dc; color:#a1311a; } .tg.warm { background:#fff1cc; color:#7a5200; } .tg.cold { background:#e8edf2; color:#46586b; }
+  .score { font:700 13px var(--mono); } .bar { height:4px; background:#eeebe4; border-radius:2px; margin-top:3px; } .bar i { display:block; height:4px; border-radius:2px; background:#d9622b; }
+  .es { font:600 11px var(--sans); } .es.valid { color:#1e6b3a; } .es.catch-all { color:#8a5a00; } .es.invalid, .es.none { color:#a1311a; }
+  .enr { font-size:11px; color:#6c6a64; } .enr b { color:#1d1c1a; font-weight:600; }
+  .split { display:grid; grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr); gap:0; }
+  .pane { padding:12px 14px; min-width:0; } .pane + .pane { border-left:1px solid #e7e4dc; }
+  .pane h4 { margin:0 0 8px; font-size:12px; text-transform:uppercase; letter-spacing:.05em; color:#6c6a64; display:flex; justify-content:space-between; gap:8px; }
+  .sig { display:grid; grid-template-columns:1fr 70px 50px 22px; gap:6px; padding:5px 0; border-top:1px solid #f0ede6; font-size:12.5px; align-items:center; } .sig:first-of-type { border-top:0; } .sig .v { font:600 12px var(--mono); text-align:right; } .sig .stale { color:#a29f97; } .sig button { border:0; background:none; color:#a1311a; cursor:pointer; font-weight:700; }
+  .frm { display:flex; gap:6px; flex-wrap:wrap; margin-top:8px; align-items:center; } .btn2 { font:600 12px var(--sans); background:#2b2a26; color:#fff; border:0; border-radius:6px; padding:5px 11px; cursor:pointer; }
+  .next { background:#f1efe9; border-radius:6px; padding:7px 9px; margin-top:8px; font-weight:600; } .err { color:#a1311a; font-size:12px; margin-top:4px; } .note { color:#6c6a64; font-size:11.5px; }
+  textarea.csv { width:100%; min-height:104px; font:11.5px var(--mono); border:1px solid #e2dfd6; border-radius:6px; padding:6px; background:#fff; color:#1d1c1a; }
+  .briefs { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:10px; padding:12px 14px; }
+  .brief { background:#fff; border:1px solid #e7e4dc; border-radius:8px; padding:10px; display:flex; flex-direction:column; gap:5px; } .brief h5 { margin:0; font-size:13px; } .brief .aud { font-size:11.5px; color:#6c6a64; }
+  .ad { background:#f6f4ef; border-radius:6px; padding:7px; } .ad b { display:block; font-size:13px; } .vid { font:11.5px var(--mono); color:#3b3934; margin:0; padding-left:14px; }
+  .st2 { font:700 11px var(--sans); } .st2.need { color:#8a5a00; } .st2.ok { color:#1e6b3a; }
+  table.perf { width:100%; border-collapse:collapse; font-size:12.5px; } table.perf th, table.perf td { padding:6px 7px; border-top:1px solid #eeebe4; text-align:left; vertical-align:top; } table.perf th { font-size:11px; color:#6c6a64; text-transform:uppercase; }
+  table.perf input { width:74px; font:12px var(--mono); border:1px solid #d9d5ca; border-radius:5px; padding:3px 5px; }
+  .act { font:700 11px var(--sans); text-transform:uppercase; border-radius:4px; padding:1px 6px; } .act.scale { background:#e3f4e8; color:#1e6b3a; } .act.pause { background:#fde4dc; color:#a1311a; } .act.keep { background:#eef0f3; color:#46586b; }
+  .sect { padding:10px 14px; background:#f6f4ef; border-top:1px solid #e7e4dc; border-bottom:1px solid #e7e4dc; font-weight:700; display:flex; gap:10px; align-items:center; flex-wrap:wrap; } .sect small { font-weight:500; color:#6c6a64; }
+/* ---------- page ---------- */
+  .break { background:linear-gradient(0deg,rgba(227,179,65,.07),rgba(227,179,65,.07)),var(--surface); border:1px solid var(--border); border-radius:14px; padding:16px 18px; }
+  .cards2 { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+  .panel { background:var(--surface); border:1px solid var(--border); border-radius:14px; padding:18px; min-width:0; } .panel h3 { margin:0 0 6px; font-size:16px; } .panel p { margin:0; color:var(--muted); font-size:14.5px; }
+  ol.steps { list-style:none; counter-reset:s; padding:0; margin:0; display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:14px; }
+  ol.steps li { counter-increment:s; background:var(--surface); border:1px solid var(--border); border-radius:14px; padding:16px; font-size:15px; }
+  ol.steps li::before { content:counter(s); display:inline-grid; place-items:center; width:26px; height:26px; border-radius:50%; background:var(--surface-2); border:1px solid var(--border); font-weight:700; margin-bottom:8px; }
+  ol.steps li.yours { border-color:var(--good); } .whom { display:block; font-size:12px; text-transform:uppercase; letter-spacing:.06em; color:var(--muted); margin-bottom:4px; } li.yours .whom { color:var(--good); }
+  .tiers { display:grid; grid-template-columns:1fr 1.3fr 1fr; gap:14px; align-items:start; }
+  .tier { background:var(--surface); border:1px solid var(--border); border-radius:16px; padding:20px; } .tier.featured { border:2px solid var(--gold); position:relative; }
+  .tier .badge2 { position:absolute; top:-12px; left:20px; background:var(--gold); color:#1a1405; font-weight:800; font-size:12px; letter-spacing:.05em; text-transform:uppercase; border-radius:6px; padding:3px 10px; }
+  .tier h3 { margin:0; font-size:18px; } .price { font-size:34px; font-weight:800; margin:6px 0 2px; } .price s { font-size:18px; color:var(--muted); font-weight:400; margin-left:8px; }
+  .tier .for { color:var(--muted); font-size:14px; margin:0 0 12px; } .tier ul { margin:0; padding-left:18px; font-size:14.5px; } .tier li { margin:4px 0; }
+  .stack { width:100%; border-collapse:collapse; font-size:14.5px; margin:10px 0 4px; } .stack td { padding:6px 0; border-bottom:1px solid var(--border); vertical-align:top; } .stack td:last-child { text-align:right; color:var(--muted); white-space:nowrap; padding-left:10px; }
+  .stack tr.bonus td:first-child::before { content:"Bonus · "; color:var(--gold); font-weight:700; } .stack tr.total td { border-bottom:0; font-weight:800; color:var(--text); padding-top:10px; } .stack tr.total td:last-child { color:var(--text); }
+  .ms { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:14px; margin-top:16px; }
+  .ms .tag2 { font-size:12px; color:var(--gold); text-transform:uppercase; letter-spacing:.06em; font-weight:700; } .ms .mp { font-size:26px; font-weight:800; margin:2px 0; } .ms .days { color:var(--muted); font-size:13px; }
+  .ms ul { margin:8px 0; padding-left:18px; font-size:14.5px; } .ms .acc { font-size:13.5px; color:var(--muted); border-top:1px solid var(--border); padding-top:8px; } .ms .acc b { color:var(--text); }
+  .costs { margin-top:14px; font-size:14.5px; color:var(--muted); } .costs b { color:var(--text); }
+  .cta { background:var(--surface); border:2px solid var(--good); border-radius:16px; padding:24px; } .cta h2 { font-size:24px; } .cta p { margin:6px 0 0; max-width:80ch; } .cta .urgency { color:var(--muted); font-size:14px; margin-top:12px; }
+  .need { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:8px 18px; padding-left:20px; margin:0; }
+  pre.tree { font:13px/1.6 var(--mono); background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:14px 16px; overflow-x:auto; margin:0 0 10px; }
+  footer { border-top:1px solid var(--border); margin-top:18px; padding:22px 0 40px; color:var(--muted); font-size:14px; } footer p { margin:0 0 8px; max-width:95ch; }
+  
+  @media (max-width:1100px) { .split { grid-template-columns:1fr; } .pane + .pane { border-left:0; border-top:1px solid #e7e4dc; } .briefs { grid-template-columns:1fr 1fr; } }
+  @media (max-width:980px) { .cards2, .ms, .tiers, .benefits { grid-template-columns:1fr; } ol.steps { grid-template-columns:1fr 1fr; } .tier.featured { order:-1; } }
+  @media (max-width:640px) { .briefs { grid-template-columns:1fr; } ol.steps, .need { grid-template-columns:1fr; } .pill { display:none; } .perfwrap { overflow-x:auto; } }
+  @media (prefers-reduced-motion:reduce) { * { transition:none !important; animation:none !important; } }
+</style>
+</head>
+<body>
+<header class="topbar"><div class="wrap"><span class="eyebrow">Signals across 5 industries → scored list with verified emails → ad briefs you approve → spend kept to target · Live preview</span><span class="pill">Sample companies · invented</span></div></header>
+<main class="wrap">
+  <div class="hero">
+    <span class="eyebrow">For a marketing team selling social media and short video ads to five industries</span>
+    <h1>Know who is ready to buy this week, and run ads only where they pay.</h1>
+    <p class="lede"><strong>This is a working preview, not a video.</strong> Agent one scores companies by buying signals (hiring for marketing, a new location, new funding, a visit to your pricing page), names what they probably need, and puts only verified emails on the follow-up list. Agent two writes ad briefs for the hottest groups, waits for your approval, then pauses or scales each ad by its cost per lead.</p>
+    <div class="benefits">
+      <div><b>A short list, not a big one</b>Signals fade over time, so last week's job post outranks last spring's.</div>
+      <div><b>No bounced emails</b>Catch-all and invalid addresses are held back with the reason and the next step.</div>
+      <div><b>Ad money with rules</b>No leads after $60 spent, or a lead costing over 1.5x target, and the ad pauses.</div>
+    </div>
+  </div>
+
+  <div class="app" id="app" aria-label="Buying signal and ad agents preview">
+    <div class="abar"><b>Prospects · Ontario</b><small>today: 24 Oct 2026</small>
+      <button type="button" class="chip" data-tier="all" aria-pressed="true" data-testid="f-all">All</button><button type="button" class="chip" data-tier="hot" aria-pressed="false" data-testid="f-hot">Hot</button><button type="button" class="chip" data-tier="warm" aria-pressed="false" data-testid="f-warm">Warm</button><button type="button" class="chip" data-tier="cold" aria-pressed="false" data-testid="f-cold">Cold</button>
+      <select id="f-ind" data-testid="f-ind" aria-label="Industry"><option value="">All 5 industries</option></select>
+      <span class="sp"></span><button type="button" class="chip" id="reset" data-testid="reset">Reset sample</button></div>
+    <div class="sect">Agent 1 · Buying signals <small id="counts" data-testid="counts"></small></div>
+    <div class="tblwrap"><table class="clay" aria-label="Prospect table"><thead><tr><th></th><th>Company<small>source list</small></th><th>Industry</th><th>City</th><th>Signals<small>job posts, news, ads, site visits</small></th><th>Score<small>fades over 30 days</small></th><th>Tier</th><th>Likely interests<small>AI research column</small></th><th>Contact<small>enrichment</small></th><th>Email<small>verified?</small></th></tr></thead><tbody id="rows" data-testid="rows"></tbody></table></div>
+    <div class="split">
+      <div class="pane"><h4><span id="d-name" data-testid="d-name"></span><span id="d-score"></span></h4>
+        <div id="d-sigs" data-testid="d-sigs"></div>
+        <div class="frm"><select id="s-type" data-testid="s-type" aria-label="Signal type"></select><input id="s-date" data-testid="s-date" value="2026-10-23" size="10" aria-label="Signal date"><button type="button" class="btn2" id="s-add" data-testid="s-add">Add signal</button>
+          <label class="note">Email <select id="d-es" data-testid="d-es"><option>valid</option><option>catch-all</option><option>invalid</option><option>none</option></select></label></div>
+        <div class="err" id="s-err" data-testid="s-err" role="alert"></div>
+        <div class="next" id="d-next" data-testid="d-next"></div></div>
+      <div class="pane"><h4>Follow-up list <span id="fu-n" data-testid="fu-n"></span></h4>
+        <textarea class="csv" id="csv" data-testid="csv" readonly aria-label="Follow-up list CSV"></textarea>
+        <div class="note" id="skipped" data-testid="skipped"></div></div>
+    </div>
+    <div class="sect">Agent 2 · Ad briefs <small>one per industry and interest, never per person; nothing posts until approved</small></div>
+    <div class="briefs" id="briefs" data-testid="briefs"></div>
+    <div class="sect">Agent 2 · Last week's ads <small>target cost per lead $<input id="cpl" data-testid="cpl" type="number" min="1" value="40" style="width:56px"></small></div>
+    <div class="pane perfwrap"><table class="perf" aria-label="Ad performance"><thead><tr><th>Ad</th><th>Spend $</th><th>Clicks</th><th>Leads</th><th>Click rate</th><th>Cost / lead</th><th>Decision</th></tr></thead><tbody id="perf" data-testid="perf"></tbody></table>
+      <div class="note" id="tot" data-testid="tot" style="margin-top:6px"></div><div class="err" id="p-err" data-testid="p-err"></div></div>
+  </div>
+
+  <section aria-label="Try to break it">
+    <div class="break"><strong>Try to break it.</strong> Click Capital Comfort HVAC and change its email to valid: it joins the follow-up list. Add a "Visited your pricing page" signal dated today to Maple Key Homes and watch it climb. Date a signal next month and it is refused. Set the dental ad's leads to 0 and it pauses. Approve a brief and it is scheduled; the others still wait.</div>
+  </section>
+
+  <section aria-labelledby="how-h">
+    <h2 id="how-h">How it works in Clay</h2>
+    <p class="sub">Four steps, one of them yours.</p>
+    <ol class="steps">
+      <li class="yours"><span class="whom">You</span>Name the five industries, the cities, and the services you sell.</li>
+      <li><span class="whom">Me</span>A Clay table per industry: company lists, signal columns, an AI research column for likely interests, and email finding with verification.</li>
+      <li><span class="whom">Me</span>Scoring and the follow-up rules as columns, so the hot list updates itself and only verified emails export.</li>
+      <li><span class="whom">Me</span>The ad agent turns hot groups into briefs for your approval, then reports spend and cost per lead weekly.</li>
+    </ol>
+  </section>
+
+  <section aria-labelledby="price-h">
+    <h2 id="price-h">Packages</h2>
+    <p class="sub">Fixed price through Upwork, at your $500 budget.</p>
+    <div class="tiers">
+      <div class="tier"><h3>Signal agent</h3><div class="price">$300</div><p class="for">Agent one only, about one week.</p><ul><li>Clay tables for 5 industries</li><li>Scoring and likely interests</li><li>Verified follow-up list</li></ul></div>
+      <div class="tier featured" data-testid="featured"><span class="badge2">Best value</span><h3>Both agents</h3>
+        <div class="price">$500<s>$1,000</s></div><p class="for">About two weeks: this preview built in your Clay and ad accounts.</p>
+        <table class="stack" aria-label="What is included">
+          <tr><td>Clay tables for your 5 industries</td><td>$200</td></tr>
+          <tr><td>Signal scoring and likely interests</td><td>$150</td></tr>
+          <tr><td>Verified emails and the follow-up export</td><td>$100</td></tr>
+          <tr><td>Ad brief agent: static and short video</td><td>$200</td></tr>
+          <tr><td>Spend report with pause and scale rules</td><td>$150</td></tr>
+          <tr class="bonus"><td>Approval step before anything posts</td><td>$100</td></tr>
+          <tr class="bonus"><td>Loom walkthrough of both agents</td><td>$100</td></tr>
+          <tr class="total"><td>Value if bought separately</td><td>$1,000</td></tr>
+        </table></div>
+      <div class="tier"><h3>Both agents, first month run</h3><div class="price">$850</div><p class="for">About six weeks.</p><ul><li>Everything in Both agents</li><li>I run and tune them for 30 days</li><li>Weekly report and changes</li></ul></div>
+    </div>
+  </section>
+
+  <section aria-label="Next step">
+    <div class="cta"><h2>Send me your five industries and the cities you serve.</h2>
+      <p>Reply in our Upwork chat with the industries, the cities you serve, and what you sell. I'll send back the scoring rules and a first ten-company sample before you fund anything.</p>
+      <p class="urgency">I can start this week.</p></div>
+  </section>
+
+  <section aria-labelledby="need-h">
+    <h2 id="need-h">What I need from you to start</h2>
+    <ul class="need"><li>A Clay workspace with credits, and me added as a user.</li><li>Your five industries, cities and services.</li><li>Access to the ad accounts (Meta and others) the agent will report on.</li><li>Your target cost per lead and daily budget limits.</li></ul>
+  </section>
+
+  <section aria-labelledby="hood-h">
+    <h2 id="hood-h">Under the hood</h2>
+    <pre class="tree">intent-ads-agent/
+  index.html               this page
+  src/intentAgent.js       signal scoring with decay, interests, follow-up rules, ad briefs, pause and scale rules
+  data/sample.json         invented Ontario companies, signals, ad copy and last week's ad results
+  tests/verify.js          28 tests against src/intentAgent.js
+  tests/browser-check.py   drives this page in a real browser</pre>
+    <p class="sub">The page and the tests load the same engine file. In your build the scoring and rules become Clay columns and the ad agent runs on Claude with your ad accounts; this preview shows exactly what those rules do. Hand src/ and tests/ to a developer, or never open them.</p>
+  </section>
+</main>
+<footer><div class="wrap">
+  <p>Built from the job post. Every company, person, email and ad result is invented, and nothing here is connected to Clay, Meta or any ad account. The scoring, follow-up, brief and spend rules and the 28 passing tests are real. No prior work for your business is claimed. This page will be taken down about 30 days after it was sent.</p>
+  <p>Built by Taiwo, Pathfinder Automation Solutions.</p>
+</div></footer>
+<script src="src/intentAgent.js"></script>
+<script>
+(function () {
+  'use strict';
+  var FALLBACK = {"settings":{"today":"2026-10-24"},"industries":[{"id":"dental","name":"Dental clinics","fit":1.0,"customers":"new patients","noun":"dental clinic"},{"id":"home","name":"Home services","fit":1.0,"customers":"booked jobs","noun":"home service company"},{"id":"medspa","name":"Med spas","fit":1.0,"customers":"bookings","noun":"med spa"},{"id":"fitness","name":"Fitness studios","fit":0.9,"customers":"members","noun":"fitness studio"},{"id":"realty","name":"Real estate teams","fit":0.8,"customers":"listings","noun":"real estate team"}],"accounts":[{"company":"Lakeshore Family Dental","city":"Mississauga","industry":"dental","signals":[{"type":"hiring-marketing","date":"2026-10-20","note":"Social media coordinator role posted"},{"type":"new-location","date":"2026-10-01","note":"Second clinic opening in Oakville"},{"type":"site-visit","date":"2026-10-22","note":"Pricing page, 3 visits"},{"type":"ads-started","date":"2026-10-15"}],"contact":{"name":"Anika Rao","title":"Practice owner","email":"anika@lakeshorefamilydental.example","emailStatus":"valid"}},{"company":"Bloor West Smiles","city":"Toronto","industry":"dental","signals":[{"type":"leadership-change","date":"2026-10-12","note":"New practice manager"},{"type":"review-drop","date":"2026-10-05","note":"4.6 to 4.2 stars"},{"type":"site-visit","date":"2026-10-20"}],"contact":{"name":"Marco Silva","title":"Practice manager","email":"marco@bloorwestsmiles.example","emailStatus":"catch-all"}},{"company":"Northline Roofing","city":"Hamilton","industry":"home","signals":[{"type":"funding","date":"2026-10-14","note":"Equipment financing announced"},{"type":"hiring-marketing","date":"2026-10-18","note":"Marketing coordinator role"},{"type":"ads-stopped","date":"2026-10-02"},{"type":"site-visit","date":"2026-10-23"}],"contact":{"name":"Dave Kowalski","title":"Owner","email":"dave@northlineroofing.example","emailStatus":"valid"}},{"company":"Capital Comfort HVAC","city":"Ottawa","industry":"home","signals":[{"type":"new-location","date":"2026-09-28","note":"Kanata branch"},{"type":"ads-started","date":"2026-10-10"},{"type":"hiring-marketing","date":"2026-10-15","note":"Digital marketing coordinator"}],"contact":{"name":"Julie Tremblay","title":"Marketing lead","email":"","emailStatus":"none"}},{"company":"Glow Aesthetics Studio","city":"Toronto","industry":"medspa","signals":[{"type":"product-launch","date":"2026-10-16","note":"New laser treatment"},{"type":"hiring-marketing","date":"2026-10-19","note":"Content creator role"},{"type":"site-visit","date":"2026-10-21"}],"contact":{"name":"Sara Ahmed","title":"Founder","email":"sara@glowaesthetics.example","emailStatus":"valid"}},{"company":"Forest City Med Spa","city":"London","industry":"medspa","signals":[{"type":"review-drop","date":"2026-09-10"}],"contact":{"name":"Emily Chen","title":"Clinic director","email":"emily@forestcitymedspa.example","emailStatus":"valid"}},{"company":"Iron Harbour Fitness","city":"Hamilton","industry":"fitness","signals":[{"type":"new-location","date":"2026-10-08","note":"Second gym, Stoney Creek"},{"type":"ads-started","date":"2026-10-17"},{"type":"leadership-change","date":"2026-10-19"},{"type":"hiring-marketing","date":"2026-10-06","note":"Front desk and social media role"}],"contact":{"name":"Ryan Murphy","title":"Co-owner","email":"ryan@ironharbourfitness.example","emailStatus":"valid"}},{"company":"Pulse Cycle Studio","city":"Ottawa","industry":"fitness","signals":[{"type":"ads-stopped","date":"2026-08-01"}],"contact":{"name":"Nina Patel","title":"Owner","email":"nina@pulsecycle.example","emailStatus":"invalid"}},{"company":"Harbourfront Realty Group","city":"Toronto","industry":"realty","signals":[{"type":"hiring-marketing","date":"2026-10-21","note":"Video editor role"},{"type":"funding","date":"2026-10-09"},{"type":"site-visit","date":"2026-10-23"}],"contact":{"name":"Omar Haddad","title":"Team lead","email":"omar@harbourfrontrealty.example","emailStatus":"valid"}},{"company":"Maple Key Homes","city":"Mississauga","industry":"realty","signals":[{"type":"ads-started","date":"2026-10-11"}],"contact":{"name":"Linda Park","title":"Broker","email":"linda@maplekeyhomes.example","emailStatus":"valid"}},{"company":"Riverside Auto Repair","city":"London","industry":"auto","signals":[{"type":"hiring-marketing","date":"2026-10-20"}],"contact":{"name":"Tom Reid","title":"Owner","email":"tom@riversideauto.example","emailStatus":"valid"}},{"industry":"dental","signals":[]}],"copy":{"social media management":{"hook":"Posting every day, without hiring","body":"We run social media for {industry} in {city}: content, posting and replies, so your team stays with {customers}.","scene":"A week of posts for a {business} in {city}, made from photos they already have."},"short video ads":{"hook":"15-second videos that bring in {customers}","body":"Short local video ads for {industry}, tested every week and paused when they stop working.","scene":"Turn reviews and photos from a {business} in {city} into a 15-second ad."},"paid social campaigns":{"hook":"Ads that pay for themselves, or get paused","body":"Meta campaigns for {industry} with a cost-per-lead target and a weekly report you can read in a minute.","scene":"The weekly report: what ran, what each lead cost, what was paused."},"local awareness ads":{"hook":"Just opened? Let {city} know","body":"Launch ads for a new {business} location, shown to people a few kilometres away.","scene":"A map of {city} with the new location and the people reached around it."},"launch campaign":{"hook":"Launching something new? Fill the first month","body":"A two-week launch campaign for {industry}: static ads, short videos and a booking link.","scene":"Before and after: the new service, then the booking calendar filling up."},"agency review":{"hook":"New in the role? Here is what your ads are costing","body":"A free 15-minute review of your current ads, for anyone who just took over marketing at a {business}.","scene":"Three numbers every new marketing lead in {city} should check this week."},"default":{"hook":"More {customers} this month","body":"We help {industry} in {city} turn social media into {customers}.","scene":"A {business} in {city}, before and after a month of ads."}},"adResults":[{"id":"AD-dental-short-video-ads","spend":140,"impressions":18000,"clicks":230,"leads":5,"daily":30},{"id":"AD-home-paid-social-campaigns","spend":95,"impressions":15000,"clicks":90,"leads":0,"daily":25},{"id":"AD-medspa-launch-campaign","spend":45,"impressions":6000,"clicks":70,"leads":1,"daily":20},{"id":"AD-fitness-local-awareness-ads","spend":120,"impressions":12000,"clicks":70,"leads":2,"daily":20},{"id":"AD-realty-short-video-ads","spend":200,"impressions":21000,"clicks":260,"leads":3,"daily":35}]};
+  var A = window.IntentAgent, $ = function (id) { return document.getElementById(id); };
+  function esc(s) { return String(s === null || s === undefined ? '' : s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
+  function clone(o) { return JSON.parse(JSON.stringify(o)); }
+  var ORIG, D, S, sel = null, tier = 'all', approved = {};
+  $('s-type').innerHTML = Object.keys(A.SIGNALS).map(function (k) { return '<option value="' + k + '">' + esc(A.SIGNALS[k].label) + '</option>'; }).join('');
+  function load(d) { ORIG = clone(d); D = clone(d); approved = {}; sel = 'Lakeshore Family Dental'; $('f-ind').innerHTML = '<option value="">All 5 industries</option>' + D.industries.map(function (i) { return '<option value="' + i.id + '">' + esc(i.name) + '</option>'; }).join(''); render(); perf(); }
+  function raw(name) { return D.accounts.filter(function (a) { return a.company === name; })[0]; }
+  function render() {
+    S = A.scoreAccounts(D);
+    $('counts').textContent = S.counts.hot + ' hot · ' + S.counts.warm + ' warm · ' + S.counts.cold + ' cold';
+    var ind = $('f-ind').value;
+    var list = S.accounts.filter(function (a) { return (tier === 'all' || a.tier === tier) && (!ind || a.industry === ind); });
+    $('rows').innerHTML = list.map(function (a, i) {
+      return '<tr data-c="' + esc(a.company) + '" data-testid="row" data-tier="' + a.tier + '" aria-selected="' + (a.company === sel) + '"><td class="n">' + (i + 1) + '</td><td><b>' + esc(a.company) + '</b></td><td>' + esc(a.industryName) + '</td><td>' + esc(a.city) + '</td><td class="enr">' + a.signals.slice(0, 2).map(function (x) { return '<b>' + esc(x.label) + '</b> ' + x.age + 'd'; }).join('<br>') + (a.signals.length > 2 ? '<br>+' + (a.signals.length - 2) + ' more' : '') + '</td><td><span class="score">' + a.score + '</span><div class="bar"><i style="width:' + a.score + '%"></i></div></td><td><span class="tg ' + a.tier + '">' + a.tier + '</span></td><td class="enr">' + esc(a.interests.join(', ')) + '</td><td class="enr"><b>' + esc(a.contact.name || '') + '</b><br>' + esc(a.contact.title || '') + '</td><td><span class="es ' + esc(a.emailStatus) + '">' + esc(a.emailStatus) + '</span></td></tr>';
+    }).join('') || '<tr><td colspan="10" class="note">No companies match this filter.</td></tr>';
+    var a = S.accounts.filter(function (x) { return x.company === sel; })[0] || S.accounts[0];
+    if (a) {
+      sel = a.company;
+      $('d-name').textContent = a.company + ' · ' + a.city; $('d-score').innerHTML = '<span class="tg ' + a.tier + '" data-testid="d-tier">' + a.tier + ' · ' + a.score + '</span>';
+      $('d-sigs').innerHTML = a.signals.map(function (x, j) { return '<div class="sig' + (x.stale ? ' stale' : '') + '"><span>' + esc(x.label) + (x.note ? ' <span class="note">(' + esc(x.note) + ')</span>' : '') + '</span><span class="note">' + x.age + ' days ago</span><span class="v">+' + x.value + '</span><button type="button" data-rm="' + esc(x.type) + '|' + x.age + '" aria-label="Remove signal">×</button></div>'; }).join('') || '<div class="note">No signals yet.</div>';
+      $('d-es').value = a.emailStatus; $('d-next').textContent = 'Next: ' + a.next;
+    }
+    $('fu-n').textContent = S.followUp.length + ' verified';
+    $('csv').value = 'company,contact,email,score,interest\n' + S.followUp.map(function (x) { return [x.company, x.contact.name, x.contact.email, x.score, x.interests[0] || ''].join(','); }).join('\n');
+    $('skipped').textContent = S.skipped.length ? 'Skipped: ' + S.skipped.map(function (x) { return 'row ' + x.row + (x.company ? ' ' + x.company : '') + ' (' + x.reason + ')'; }).join('; ') : '';
+    var B = A.adBriefs(S, D);
+    $('briefs').innerHTML = B.map(function (b) { var ok = approved[b.id]; return '<div class="brief" data-testid="brief" data-id="' + b.id + '"><h5>' + esc(b.industry) + ': ' + esc(b.interest) + '</h5><span class="aud">' + esc(b.audience) + '</span><div class="ad"><b>' + esc(b.staticAd.headline) + '</b>' + esc(b.staticAd.text) + '</div><ol class="vid">' + b.video.map(function (v) { return '<li>' + esc(v) + '</li>'; }).join('') + '</ol><span class="st2 ' + (ok ? 'ok' : 'need') + '" data-testid="bstat">' + (ok ? 'Approved · scheduled Mon 27 Oct, 9:00' : 'Needs approval') + '</span>' + (ok ? '' : '<button type="button" class="btn2" data-ap="' + b.id + '" data-testid="approve">Approve</button>') + '</div>'; }).join('');
+  }
+  function perf() {
+    var rows = D.adResults.map(function (r) { return r; });
+    var R = A.adReport(rows, { targetCpl: +$('cpl').value || 40 });
+    $('perf').innerHTML = D.adResults.map(function (r, i) { var o = R.rows.filter(function (x) { return x.id === r.id; })[0]; return '<tr data-testid="prow" data-act="' + (o ? o.action : 'skipped') + '"><td>' + esc(r.id) + '</td><td><input data-i="' + i + '" data-k="spend" value="' + r.spend + '" aria-label="Spend"></td><td><input data-i="' + i + '" data-k="clicks" value="' + r.clicks + '" aria-label="Clicks"></td><td><input data-i="' + i + '" data-k="leads" value="' + r.leads + '" aria-label="Leads" data-testid="leads-' + i + '"></td><td>' + (o ? o.ctr + '%' : '') + '</td><td>' + (o && o.cpl !== null ? '$' + o.cpl : o ? 'none' : '') + '</td><td>' + (o ? '<span class="act ' + o.action + '">' + o.action + '</span> <span class="note">' + esc(o.why) + '</span>' : '<span class="act pause">skipped</span>') + '</td></tr>'; }).join('');
+    $('tot').textContent = 'Total: $' + R.totals.spend + ' spent, ' + R.totals.leads + ' leads, ' + (R.totals.cpl === null ? 'no leads yet' : '$' + R.totals.cpl + ' a lead') + ', ' + R.totals.ctr + '% click rate';
+    $('p-err').textContent = R.skipped.map(function (x) { return x.id + ': ' + x.reason; }).join('; ');
+  }
+  $('rows').addEventListener('click', function (e) { var r = e.target.closest('[data-c]'); if (r) { sel = r.dataset.c; $('s-err').textContent = ''; render(); } });
+  document.querySelectorAll('.chip[data-tier]').forEach(function (c) { c.addEventListener('click', function () { tier = c.dataset.tier; document.querySelectorAll('.chip[data-tier]').forEach(function (x) { x.setAttribute('aria-pressed', String(x === c)); }); render(); }); });
+  $('f-ind').addEventListener('change', render);
+  $('s-add').addEventListener('click', function () {
+    var date = $('s-date').value.trim(), v = A.signalValue({ type: $('s-type').value, date: date }, Object.assign({}, A.DEFAULTS, D.settings));
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(date) || v === null) { $('s-err').textContent = /^\d{4}-\d{2}-\d{2}$/.test(date) ? 'That date is in the future: a signal must already have happened.' : 'Date must look like 2026-10-23.'; return; }
+    $('s-err').textContent = ''; raw(sel).signals.push({ type: $('s-type').value, date: date }); render();
+  });
+  $('d-sigs').addEventListener('click', function (e) { var b = e.target.closest('[data-rm]'); if (!b) return; var p = b.dataset.rm.split('|'), a = raw(sel); var idx = a.signals.findIndex(function (g) { var v = A.signalValue(g, Object.assign({}, A.DEFAULTS, D.settings)); return g.type === p[0] && v && String(v.age) === p[1]; }); if (idx >= 0) { a.signals.splice(idx, 1); render(); } });
+  $('d-es').addEventListener('change', function () { var a = raw(sel); a.contact = a.contact || {}; a.contact.emailStatus = $('d-es').value; render(); });
+  $('briefs').addEventListener('click', function (e) { var b = e.target.closest('[data-ap]'); if (b) { approved[b.dataset.ap] = true; render(); } });
+  $('perf').addEventListener('change', function (e) { var i = e.target.dataset.i; if (i === undefined) return; var v = e.target.value.trim(); D.adResults[+i][e.target.dataset.k] = v === '' || isNaN(Number(v)) ? v : Number(v); perf(); });
+  $('cpl').addEventListener('input', perf);
+  $('reset').addEventListener('click', function () { tier = 'all'; $('s-err').textContent = ''; document.querySelectorAll('.chip[data-tier]').forEach(function (x) { x.setAttribute('aria-pressed', String(x.dataset.tier === 'all')); }); $('cpl').value = 40; load(ORIG); });
+  fetch('data/sample.json').then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); }).then(load).catch(function () { load(FALLBACK); });
+})();
+</script>
+</body>
+</html>

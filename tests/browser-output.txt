@@ -1,0 +1,36 @@
+0. HTML tag balance
+PASS: all tags closed and nested
+1. Agent 1 table
+PASS: 10 scored rows: 3 hot, 4 warm, 3 cold
+PASS: first row is Northline Roofing at 81
+PASS: follow-up list has 5 verified rows, Bloor West Smiles (catch-all) is not on it
+PASS: skipped rows are reported with reasons
+PASS: Hot filter shows 3 rows
+PASS: Home services filter shows 2 rows
+
+2. Change the inputs
+PASS: Capital Comfort: no usable email, find another contact
+PASS: set its email to valid: it joins the follow-up list (6)
+PASS: a pricing-page visit today lifts Maple Key Homes (9 to 33)
+PASS: a signal dated next month is refused with a reason
+PASS: removing a signal lowers the score again
+
+3. Agent 2
+PASS: 6 ad briefs, all waiting for approval
+PASS: approving one schedules it; the rest still wait
+PASS: last week's ads: scale, pause, keep, keep, pause
+PASS: set the dental ad's leads to 0: it pauses
+PASS: a non-number is refused with the reason
+PASS: raise the target to $70 a lead and the real estate ad is no longer paused
+PASS: reset restores the sample
+
+4. Phone width
+PASS: no horizontal page scroll at 390px
+
+5. Off disk (file://, fallback data)
+PASS: file:// copy works on the embedded data
+
+6. Console
+PASS: zero console or page errors
+
+22 passed, 0 failed
